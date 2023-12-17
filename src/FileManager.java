@@ -48,42 +48,42 @@ public class FileManager {
                         changeDirectory();
                         break;
                     case 9:
-                        System.out.println("Выход...");
+                        System.out.println("Г‚Г»ГµГ®Г¤...");
                         System.exit(0);
                     default:
-                        System.out.println("Введена опция, которой не существует. Попробуйте снова.");
+                        System.out.println("Г‚ГўГҐГ¤ГҐГ­Г  Г®ГЇГ¶ГЁГї, ГЄГ®ГІГ®Г°Г®Г© Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ. ГЏГ®ГЇГ°Г®ГЎГіГ©ГІГҐ Г±Г­Г®ГўГ .");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Неверный тип введённых данных. Попробуйте снова.");
+                System.out.println("ГЌГҐГўГҐГ°Г­Г»Г© ГІГЁГЇ ГўГўГҐГ¤ВёГ­Г­Г»Гµ Г¤Г Г­Г­Г»Гµ. ГЏГ®ГЇГ°Г®ГЎГіГ©ГІГҐ Г±Г­Г®ГўГ .");
             } catch (Exception e) {
-                System.out.println("Ошибка: " + e.getMessage() + ". Попробуйте снова.");
+                System.out.println("ГЋГёГЁГЎГЄГ : " + e.getMessage() + ". ГЏГ®ГЇГ°Г®ГЎГіГ©ГІГҐ Г±Г­Г®ГўГ .");
             }
         }
     }
 
     private void printMenu() {
-        System.out.println("Текущий путь: " + currentPath);
-        System.out.println("1. Список файлов и директорий");
-        System.out.println("2. Создать файл");
-        System.out.println("3. Создать директорию");
-        System.out.println("4. Удалить файл/директорию");
-        System.out.println("5. Скопировать файл");
-        System.out.println("6. Переместить файл");
-        System.out.println("7. Просмотреть свойства файла");
-        System.out.println("8. Изменить текущую директорию");
-        System.out.println("9. Выход");
-        System.out.print("Введите опцию: ");
+        System.out.println("Г’ГҐГЄГіГ№ГЁГ© ГЇГіГІГј: " + currentPath);
+        System.out.println("1. Г‘ГЇГЁГ±Г®ГЄ ГґГ Г©Г«Г®Гў ГЁ Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГ©");
+        System.out.println("2. Г‘Г®Г§Г¤Г ГІГј ГґГ Г©Г«");
+        System.out.println("3. Г‘Г®Г§Г¤Г ГІГј Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГѕ");
+        System.out.println("4. Г“Г¤Г Г«ГЁГІГј ГґГ Г©Г«/Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГѕ");
+        System.out.println("5. Г‘ГЄГ®ГЇГЁГ°Г®ГўГ ГІГј ГґГ Г©Г«");
+        System.out.println("6. ГЏГҐГ°ГҐГ¬ГҐГ±ГІГЁГІГј ГґГ Г©Г«");
+        System.out.println("7. ГЏГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј Г±ГўГ®Г©Г±ГІГўГ  ГґГ Г©Г«Г ");
+        System.out.println("8. Г€Г§Г¬ГҐГ­ГЁГІГј ГІГҐГЄГіГ№ГіГѕ Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГѕ");
+        System.out.println("9. Г‚Г»ГµГ®Г¤");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г®ГЇГ¶ГЁГѕ: ");
     }
 
     private void listFiles(Path directory) {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory)) {
-            System.out.println("Файлы в " + directory + ":");
+            System.out.println("Г”Г Г©Г«Г» Гў " + directory + ":");
             List<Path> paths = new ArrayList<>();
-            stream.forEach(paths::add); // Convert stream to list
+            stream.forEach(paths::add);
             Path[] pathsArray = paths.toArray(Path[]::new);
 
-            Arrays.sort(pathsArray, Comparator.comparing(Path::toString)); // Sort paths alphabetically
-            Arrays.sort(pathsArray, (p1, p2) -> Boolean.compare(Files.isDirectory(p2), Files.isDirectory(p1))); // Sort by directory first
+            Arrays.sort(pathsArray, Comparator.comparing(Path::toString)); 
+            Arrays.sort(pathsArray, (p1, p2) -> Boolean.compare(Files.isDirectory(p2), Files.isDirectory(p1)));
 
             for (Path path : pathsArray) {
                 BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
@@ -91,47 +91,47 @@ public class FileManager {
                 System.out.println(path.getFileName() + sizeInfo);
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при отображении файлов: " + e.getMessage() + " Попробуйте снова.");
+            System.out.println("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГЁ ГґГ Г©Г«Г®Гў: " + e.getMessage() + " ГЏГ®ГЇГ°Г®ГЎГіГ©ГІГҐ Г±Г­Г®ГўГ .");
         }
     }
 
 
     private void createFile(Path path) {
-        System.out.print("Введите название файла: ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГґГ Г©Г«Г : ");
         String fileName = scanner.nextLine();
         Path filePath = path.resolve(fileName);
 
         try {
             if (Files.notExists(filePath)) {
                 Files.createFile(filePath);
-                System.out.println("Файл создан в: " + filePath);
+                System.out.println("Г”Г Г©Г« Г±Г®Г§Г¤Г Г­ Гў: " + filePath);
             } else {
-                System.out.println("Файл уже существует в: " + filePath);
+                System.out.println("Г”Г Г©Г« ГіГ¦ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ Гў: " + filePath);
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при создании файла: " + e.getMessage());
+            System.out.println("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г±Г®Г§Г¤Г Г­ГЁГЁ ГґГ Г©Г«Г : " + e.getMessage());
         }
     }
 
     private void createDirectory(Path path) {
-        System.out.print("Введите название создаваемой директории: ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ Г±Г®Г§Г¤Г ГўГ ГҐГ¬Г®Г© Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ: ");
         String dirName = scanner.nextLine();
         Path dirPath = path.resolve(dirName);
 
         try {
             if (Files.notExists(dirPath)) {
                 Files.createDirectory(dirPath);
-                System.out.println("Директория создана в: " + dirPath);
+                System.out.println("Г„ГЁГ°ГҐГЄГІГ®Г°ГЁГї Г±Г®Г§Г¤Г Г­Г  Гў: " + dirPath);
             } else {
-                System.out.println("Директория уже существует в: " + dirPath);
+                System.out.println("Г„ГЁГ°ГҐГЄГІГ®Г°ГЁГї ГіГ¦ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ Гў: " + dirPath);
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при создании директории: " + e.getMessage());
+            System.out.println("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г±Г®Г§Г¤Г Г­ГЁГЁ Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ: " + e.getMessage());
         }
     }
 
     private void deleteFile(Path path) {
-        System.out.print("Введите название файла/директории для её удаления: ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГґГ Г©Г«Г /Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ Г¤Г«Гї ГҐВё ГіГ¤Г Г«ГҐГ­ГЁГї: ");
         String fileName = scanner.nextLine();
         Path filePath = path.resolve(fileName);
 
@@ -142,19 +142,19 @@ public class FileManager {
                 } else {
                     Files.delete(filePath);
                 }
-                System.out.println("Файл/директория успешно удалены: " + filePath);
+                System.out.println("Г”Г Г©Г«/Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГї ГіГ±ГЇГҐГёГ­Г® ГіГ¤Г Г«ГҐГ­Г»: " + filePath);
             } else {
-                System.out.println("Файл/директория не найдена: " + filePath);
+                System.out.println("Г”Г Г©Г«/Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГї Г­ГҐ Г­Г Г©Г¤ГҐГ­Г : " + filePath);
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при удалении файла/директории: " + e.getMessage());
+            System.out.println("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГіГ¤Г Г«ГҐГ­ГЁГЁ ГґГ Г©Г«Г /Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ: " + e.getMessage());
         }
     }
 
     private void copyFile(Path path) {
-        System.out.print("Введите название файла, который вы бы хотели скопировать: ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГґГ Г©Г«Г , ГЄГ®ГІГ®Г°Г»Г© ГўГ» ГЎГ» ГµГ®ГІГҐГ«ГЁ Г±ГЄГ®ГЇГЁГ°Г®ГўГ ГІГј: ");
         String sourceFileName = scanner.nextLine();
-        System.out.print("Введите название файла, которое будет у скопированного файла: ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГґГ Г©Г«Г , ГЄГ®ГІГ®Г°Г®ГҐ ГЎГіГ¤ГҐГІ Гі Г±ГЄГ®ГЇГЁГ°Г®ГўГ Г­Г­Г®ГЈГ® ГґГ Г©Г«Г : ");
         String destFileName = scanner.nextLine();
 
         Path sourcePath = path.resolve(sourceFileName);
@@ -162,16 +162,16 @@ public class FileManager {
 
         try {
             Files.copy(sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Файл скопирован из " + sourcePath + " в " + destPath);
+            System.out.println("Г”Г Г©Г« Г±ГЄГ®ГЇГЁГ°Г®ГўГ Г­ ГЁГ§ " + sourcePath + " Гў " + destPath);
         } catch (IOException e) {
-            System.out.println("Ошибка при копировании файла " + e.getMessage());
+            System.out.println("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГЁ ГґГ Г©Г«Г  " + e.getMessage());
         }
     }
 
     private void moveFile(Path path) {
-        System.out.print("Введите название файла, который вы бы хотели переместить: ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГґГ Г©Г«Г , ГЄГ®ГІГ®Г°Г»Г© ГўГ» ГЎГ» ГµГ®ГІГҐГ«ГЁ ГЇГҐГ°ГҐГ¬ГҐГ±ГІГЁГІГј: ");
         String sourceFileName = scanner.nextLine();
-        System.out.print("Введите директорию, в которую будет скопирован файл: ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГѕ, Гў ГЄГ®ГІГ®Г°ГіГѕ ГЎГіГ¤ГҐГІ Г±ГЄГ®ГЇГЁГ°Г®ГўГ Г­ ГґГ Г©Г«: ");
         String destDirectoryName = scanner.nextLine();
 
         Path sourcePath = path.resolve(sourceFileName);
@@ -182,27 +182,27 @@ public class FileManager {
             if (Files.exists(sourcePath)) {
                 if (Files.isDirectory(destDirectoryPath)) {
                     Files.move(sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
-                    System.out.println("Файл успешно перемещён из " + sourcePath + " в " + destPath);
+                    System.out.println("Г”Г Г©Г« ГіГ±ГЇГҐГёГ­Г® ГЇГҐГ°ГҐГ¬ГҐГ№ВёГ­ ГЁГ§ " + sourcePath + " Гў " + destPath);
                 } else {
-                    System.out.println("Данной директории не существует: " + destDirectoryPath);
+                    System.out.println("Г„Г Г­Г­Г®Г© Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ: " + destDirectoryPath);
                 }
             } else {
-                System.out.println("Файл не найден: " + sourcePath);
+                System.out.println("Г”Г Г©Г« Г­ГҐ Г­Г Г©Г¤ГҐГ­: " + sourcePath);
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при перемещении файла: " + e.getMessage());
+            System.out.println("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГЁ ГґГ Г©Г«Г : " + e.getMessage());
         }
     }
 
     private void fileProperties() {
-        System.out.print("Введите название файла, свойства которого вы бы хотели просмотреть (введите 0 для отмены): ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГґГ Г©Г«Г , Г±ГўГ®Г©Г±ГІГўГ  ГЄГ®ГІГ®Г°Г®ГЈГ® ГўГ» ГЎГ» ГµГ®ГІГҐГ«ГЁ ГЇГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј (ГўГўГҐГ¤ГЁГІГҐ 0 Г¤Г«Гї Г®ГІГ¬ГҐГ­Г»): ");
         String fileName = scanner.nextLine();
 
         if (!fileName.equals("0")) {
             Path filePath = currentPath.resolve(fileName);
             displayProperties(filePath);
         } else {
-            System.out.println("Выход из свойств...");
+            System.out.println("Г‚Г»ГµГ®Г¤ ГЁГ§ Г±ГўГ®Г©Г±ГІГў...");
         }
     }
 
@@ -211,22 +211,22 @@ public class FileManager {
             BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
 
-            System.out.println("Свойства файла:");
-            System.out.println("Имя: " + path.getFileName());
-            System.out.println("Путь: " + path);
-            System.out.println("Размер: " + formatSize(attributes.size()));
-            System.out.println("Дата создания: " + formatDate(attributes.creationTime(), dateFormat));
-            System.out.println("Дата последнего изменения: " + formatDate(attributes.lastModifiedTime(), dateFormat));
-            System.out.println("Является ли директорией?: " + formatBoolean(attributes.isDirectory()));
-            System.out.println("Является обычным файлом?: " + formatBoolean(attributes.isRegularFile()));
-            System.out.println("Является символической ссылкой?: " + formatBoolean(attributes.isSymbolicLink()));
+            System.out.println("Г‘ГўГ®Г©Г±ГІГўГ  ГґГ Г©Г«Г :");
+            System.out.println("Г€Г¬Гї: " + path.getFileName());
+            System.out.println("ГЏГіГІГј: " + path);
+            System.out.println("ГђГ Г§Г¬ГҐГ°: " + formatSize(attributes.size()));
+            System.out.println("Г„Г ГІГ  Г±Г®Г§Г¤Г Г­ГЁГї: " + formatDate(attributes.creationTime(), dateFormat));
+            System.out.println("Г„Г ГІГ  ГЇГ®Г±Г«ГҐГ¤Г­ГҐГЈГ® ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї: " + formatDate(attributes.lastModifiedTime(), dateFormat));
+            System.out.println("ГџГўГ«ГїГҐГІГ±Гї Г«ГЁ Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГҐГ©?: " + formatBoolean(attributes.isDirectory()));
+            System.out.println("ГџГўГ«ГїГҐГІГ±Гї Г®ГЎГ»Г·Г­Г»Г¬ ГґГ Г©Г«Г®Г¬?: " + formatBoolean(attributes.isRegularFile()));
+            System.out.println("ГџГўГ«ГїГҐГІГ±Гї Г±ГЁГ¬ГўГ®Г«ГЁГ·ГҐГ±ГЄГ®Г© Г±Г±Г»Г«ГЄГ®Г©?: " + formatBoolean(attributes.isSymbolicLink()));
         } catch (IOException e) {
-            System.out.println("Ошибка при чтении свойств файла: " + e.getMessage());
+            System.out.println("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г·ГІГҐГ­ГЁГЁ Г±ГўГ®Г©Г±ГІГў ГґГ Г©Г«Г : " + e.getMessage());
         }
     }
 
     private String formatSize(long sizeInBytes) {
-        String[] units = {"Б", "КБ", "МБ", "ГБ", "ТБ", "ПБ"};
+        String[] units = {"ГЃ", "ГЉГЃ", "ГЊГЃ", "ГѓГЃ", "Г’ГЃ", "ГЏГЃ"};
 
         int unitIndex = 0;
         double size = sizeInBytes;
@@ -240,7 +240,7 @@ public class FileManager {
     }
 
     private String formatBoolean(boolean value) {
-        return value ? "Да" : "Нет";
+        return value ? "Г„Г " : "ГЌГҐГІ";
     }
 
     private String formatDate(FileTime fileTime, SimpleDateFormat dateFormat) {
@@ -249,7 +249,7 @@ public class FileManager {
     }
 
     private void changeDirectory() {
-        System.out.print("Введите название путь или название директории, в которую вы хотите попасть ('..' - назад, '/' - корневая директория): ");
+        System.out.print("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГЇГіГІГј ГЁГ«ГЁ Г­Г Г§ГўГ Г­ГЁГҐ Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ, Гў ГЄГ®ГІГ®Г°ГіГѕ ГўГ» ГµГ®ГІГЁГІГҐ ГЇГ®ГЇГ Г±ГІГј ('..' - Г­Г Г§Г Г¤, '/' - ГЄГ®Г°Г­ГҐГўГ Гї Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГї): ");
         String input = scanner.nextLine();
 
         if (input.equals("..")) {
@@ -261,9 +261,9 @@ public class FileManager {
 
             if (Files.isDirectory(newDirPath)) {
                 currentPath = newDirPath;
-                System.out.println("Теперь вы находитесь в: " + currentPath);
+                System.out.println("Г’ГҐГЇГҐГ°Гј ГўГ» Г­Г ГµГ®Г¤ГЁГІГҐГ±Гј Гў: " + currentPath);
             } else {
-                System.out.println("Ошибка: недействительный путь или несуществующая директория: " + newDirPath);
+                System.out.println("ГЋГёГЁГЎГЄГ : Г­ГҐГ¤ГҐГ©Г±ГІГўГЁГІГҐГ«ГјГ­Г»Г© ГЇГіГІГј ГЁГ«ГЁ Г­ГҐГ±ГіГ№ГҐГ±ГІГўГіГѕГ№Г Гї Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГї: " + newDirPath);
             }
         }
     }
@@ -272,15 +272,15 @@ public class FileManager {
         Path parentPath = currentPath.getParent();
         if (parentPath != null) {
             currentPath = parentPath;
-            System.out.println("Теперь вы находитесь в: " + currentPath);
+            System.out.println("Г’ГҐГЇГҐГ°Гј ГўГ» Г­Г ГµГ®Г¤ГЁГІГҐГ±Гј Гў: " + currentPath);
         } else {
-            System.out.println("Вы уже находитесь в корневой директории.");
+            System.out.println("Г‚Г» ГіГ¦ГҐ Г­Г ГµГ®Г¤ГЁГІГҐГ±Гј Гў ГЄГ®Г°Г­ГҐГўГ®Г© Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ.");
         }
     }
 
     private void goToRoot() {
         currentPath = currentPath.getRoot();
-        System.out.println("Теперь вы в корневой директории: " + currentPath);
+        System.out.println("Г’ГҐГЇГҐГ°Гј ГўГ» Гў ГЄГ®Г°Г­ГҐГўГ®Г© Г¤ГЁГ°ГҐГЄГІГ®Г°ГЁГЁ: " + currentPath);
     }
 
     public static void main(String[] args) {
